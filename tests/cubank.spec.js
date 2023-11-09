@@ -36,9 +36,9 @@ test("withdraw", async ({ page }) => {
   // await page.waitForTimeout(5000);
 
   // await page.locator('input:below(:text("Withdraw"))').fill("2");
-  await page.getByLabel("Please put your amount:").nth(1).fill("10");
+  await page.getByLabel("Please put your amount:").nth(1).fill("10"); // bad practice but work for now
   // await page.getByLabel("Please put your amount").fill("2");
-  await page.locator('#root > div > div > div > div:nth-child(4) > div:nth-child(2) > form > button').click(); // bad practice but work for now
+  await page.getByRole('button', { name: 'Confirm' }).nth(1).click(); // bad practice but work for now
 
   await expect(page.locator('h1:below(:text("Balance"))')).toHaveText("0");
 });
