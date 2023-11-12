@@ -35,8 +35,8 @@ test("withdraw", async ({ page }) => {
   // Click submit to login
   await page.getByRole("button", { name: "Login" }).click();
 
-  await page.getByLabel("Please put your amount:").nth(1).fill("5"); // bad practice but work for now
-  
+  await page.getByLabel("Please put your amount:").nth(1).fill("10"); // bad practice but work for now
+
   await page.getByRole('button', { name: 'Confirm' }).nth(1).click(); // bad practice but work for now
 
   await expect(page.locator('h1:below(:text("Balance"))')).toHaveText("0");
