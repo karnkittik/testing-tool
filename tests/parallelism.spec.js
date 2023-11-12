@@ -39,7 +39,7 @@ test("withdraw", async ({ page }) => {
   // await page.waitForTimeout(5000);
 
   // await page.locator('input:below(:text("Withdraw"))').fill("2");
-  await page.getByLabel("Please put your amount:").nth(1).fill("10"); // bad practice but work for now
+  await page.getByLabel("Please put your amount:").nth(1).fill("5"); // bad practice but work for now
   // await page.getByLabel("Please put your amount").fill("2");
   await page.getByRole('button', { name: 'Confirm' }).nth(1).click(); // bad practice but work for now
 
