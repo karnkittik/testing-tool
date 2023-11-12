@@ -2,7 +2,7 @@
 const { test, expect } = require("@playwright/test");
 
 // test.describe.configure({ mode: 'parallel' });
-test.describe.configure({ mode: 'serial' });
+// test.describe.configure({ mode: 'serial' });
 
 test("check title", async ({ page }) => {
   await page.goto("http://localhost:3000");

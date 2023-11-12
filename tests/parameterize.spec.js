@@ -1,6 +1,8 @@
 // @ts-check
-const { test, expect } = require("@playwright/test");
+import { test } from './my-test';
+const { expect } = require("@playwright/test");
 
+// for paramterized DEMO
 const accounts = [
   {number: "0123456789", password: "1234", expectedBalance: 10}, // Actual Balance = 10
   {number: "1234567890", password: "1234", expectedBalance: 30}, // Actual Balance = 5
@@ -11,17 +13,38 @@ const accounts = [
 
 for (const account of accounts){
   test(`check balance with account ${account.number}`, async ({ page }) => {
+    // test(`check balance`, async ({ page, accNumber, pass, expectedBalance }) => {
+    const {number, password, expectedBalance} = account
+
     await page.goto("http://localhost:3000");
   
     // Fill account number and password
-    await page.getByLabel("Account Number").fill(account.number);
-    await page.getByLabel("Password").fill(account.password);
+    await page.getByLabel("Account Number").fill(number);
+    await page.getByLabel("Password").fill(password);
   
     // Click submit to login
     await page.getByRole("button", { name: "Login" }).click();
   
     // await page.waitForTimeout(5000);
   
-    await expect(page.locator('h1:below(:text("Balance"))')).toHaveText(account.expectedBalance.toString());
+    await expect(page.locator('h1:below(:text("Balance"))')).toHaveText(expectedBalance.toString());
   });
 }
+
+// for parameterized project DEMO
+test(`check balance`, async ({ page, number, password, expectedBalance }) => {
+  
+  await page.goto("http://localhost:3000");
+
+  // Fill account number and password
+  await page.getByLabel("Account Number").fill(number);
+  await page.getByLabel("Password").fill(password);
+
+  // Click submit to login
+  await page.getByRole("button", { name: "Login" }).click();
+
+  // await page.waitForTimeout(5000);
+
+  await expect(page.locator('h1:below(:text("Balance"))')).toHaveText(expectedBalance.toString());
+});
+
