@@ -21,7 +21,6 @@ test("check balance", async ({ page }) => {
   // Click submit to login
   await page.getByRole("button", { name: "Login" }).click();
 
-  // await page.waitForTimeout(5000);
 
   await expect(page.locator('h1:below(:text("Balance"))')).toHaveText("10");
 });
@@ -36,11 +35,8 @@ test("withdraw", async ({ page }) => {
   // Click submit to login
   await page.getByRole("button", { name: "Login" }).click();
 
-  // await page.waitForTimeout(5000);
-
-  // await page.locator('input:below(:text("Withdraw"))').fill("2");
   await page.getByLabel("Please put your amount:").nth(1).fill("5"); // bad practice but work for now
-  // await page.getByLabel("Please put your amount").fill("2");
+  
   await page.getByRole('button', { name: 'Confirm' }).nth(1).click(); // bad practice but work for now
 
   await expect(page.locator('h1:below(:text("Balance"))')).toHaveText("0");
